@@ -2835,12 +2835,20 @@ export default class TransactionBuilder {
             if ('type' in _ownerPermissions) {
                 delete _ownerPermissions.type;
             }
+            _ownerPermissions.keys = _ownerPermissions.keys.map((key) => ({
+                ...key,
+                address: this.tronWeb.address.toHex(key.address),
+            }));
             data.owner = _ownerPermissions;
         }
         if (witnessPermissions) {
             const _witnessPermissions = deepCopyJson(witnessPermissions);
             // for compatible with old way of building transaction from chain which type prop is Witness
             _witnessPermissions.type = 'Witness';
+            _witnessPermissions.keys = _witnessPermissions.keys.map((key) => ({
+                ...key,
+                address: this.tronWeb.address.toHex(key.address),
+            }));
             data.witness = _witnessPermissions;
         }
         if (activesPermissions) {
@@ -2848,6 +2856,10 @@ export default class TransactionBuilder {
             // for compatible with old way of building transaction from chain which type prop is Active
             _activesPermissions.forEach((activePermissions) => {
                 activePermissions.type = 'Active';
+                activePermissions.keys = activePermissions.keys.map((key) => ({
+                    ...key,
+                    address: this.tronWeb.address.toHex(key.address),
+                }));
             });
             data.actives = _activesPermissions;
         }
