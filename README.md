@@ -183,6 +183,11 @@ Contact the team at https://cn.developers.tron.network/docs/online-technical-sup
 
 ## Recent History
 
+__5.3.3__
+- Support base58 address field in keys of updateAccountPermissions
+- Bump ethers from 6.6.0 to 6.11.1
+- Bump ethereum-cryptography from 2.0.0 to 2.1.3
+
 __5.3.2__
 - Support build transactions locally with block header argument.
 - Support [Tip586](https://github.com/tronprotocol/tips/blob/master/tip-586.md) by `trx.getBandwidthPrices` and `trx.getEnergyPrices`.
